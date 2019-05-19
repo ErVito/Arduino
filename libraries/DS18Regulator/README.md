@@ -1,6 +1,6 @@
 # DS18Regulator: an Arduino library that implements a temperature regulator using a [PID](https://en.wikipedia.org/wiki/PID_controller).
 
-This library is a wrapper around the [PID library](https://github.com/br3ttb/Arduino-PID-Library/) to easily manage a temperature control loop using a DS18 temperature sensor (one of those supported by the [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library) library) and an heater/cooler piloted by a [PWM](https://en.wikipedia.org/wiki/Pulse-width_modulation) signal.
+This library is a wrapper around the [PID library](https://github.com/br3ttb/Arduino-PID-Library/) to easily manage a temperature control loop using a DS18 temperature sensor (one of those supported by the [DallasTemperature library](https://github.com/milesburton/Arduino-Temperature-Control-Library)) and an heater/cooler piloted by a [PWM](https://en.wikipedia.org/wiki/Pulse-width_modulation) signal.
 
 ## Contents
 
@@ -42,6 +42,6 @@ Within the [Examples](https://github.com/ErVito/Arduino/tree/master/libraries/DS
 
 ## Credits
 This library has been written by ErVito using the library cited:
-- [PID library](https://github.com/br3ttb/Arduino-PID-Library/) by Brett Beauregard;
+- [PID](https://github.com/br3ttb/Arduino-PID-Library/) by Brett Beauregard;
 - [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library) by Miles Burton and others;
 - [OneWire](https://github.com/PaulStoffregen/OneWire) by Paul Stoffregen and others.
