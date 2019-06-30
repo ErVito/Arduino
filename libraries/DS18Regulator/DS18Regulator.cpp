@@ -1,3 +1,18 @@
+/*
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the  Free Software  Foundation, either  version 3 of the License, or
+(at your option) any later version.
+
+This  program  is  distributed  in the hope that  it  will be useful,
+but  WITHOUT ANY  WARRANTY; without  even  the  implied  warranty  of
+MERCHANTABILITY  or FITNESS  FOR  A  PARTICULAR  PURPOSE. See the GNU 
+General Public License for more details.
+
+You should  have received  a copy  of the  GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include "DS18Regulator.h"
 
 DS18Regulator::DS18Regulator(DallasTemperature *sensors) {
@@ -77,6 +92,21 @@ uint8_t DS18Regulator::computePID(uint8_t sensorIndex) {
 
 /* SETTERS */
 
+uint8_t DS18Regulator::setPIDGains(uint8_t regulatorIndex,
+                                   double  Kp,
+                                   double  Ki,
+                                   double  Kd) {
+    if (regulatorIndex >= NUM_OF_REGULATORS)
+        return ERR_INDEX_NOT_VALID;
+
+    if (NULL == regulators[regulatorIndex])
+        return ERR_REGULATOR_DOESNT_EXIST;
+
+    regulators[regulatorIndex]->pid->SetTunings(Kp, Ki, Kd);
+
+    return OK;
+}
+
 uint8_t DS18Regulator::setPWMResolution(uint8_t regulatorIndex, uint8_t bits) {
     if (regulatorIndex >= NUM_OF_REGULATORS)
         return ERR_INDEX_NOT_VALID;
@@ -123,8 +153,8 @@ uint8_t DS18Regulator::setReference(uint8_t regulatorIndex, double newReference)
 }
 
 uint8_t DS18Regulator::setTempRange(uint8_t regulatorIndex, 
-                                 double  newMinTemperature,
-                                 double  newMaxTemperature) {
+                                    double  newMinTemperature,
+                                    double  newMaxTemperature) {
 
     if (regulatorIndex >= NUM_OF_REGULATORS)
         return ERR_INDEX_NOT_VALID;

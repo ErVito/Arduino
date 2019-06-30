@@ -1,3 +1,18 @@
+/*
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the  Free Software  Foundation, either  version 3 of the License, or
+(at your option) any later version.
+
+This  program  is  distributed  in the hope that  it  will be useful,
+but  WITHOUT ANY  WARRANTY; without  even  the  implied  warranty  of
+MERCHANTABILITY  or FITNESS  FOR  A  PARTICULAR  PURPOSE. See the GNU 
+General Public License for more details.
+
+You should  have received  a copy  of the  GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #ifndef DS18_REGULATOR_H
 #define DS18_REGULATOR_H
 
@@ -51,6 +66,10 @@ class DS18Regulator {
             uint8_t computePID(uint8_t sensorIndex);
 
             /* SETTERS */
+            uint8_t setPIDGains(uint8_t regulatorIndex,
+                                double Kp,
+                                double Ki,
+                                double Kd);
             uint8_t setPWMResolution(uint8_t regulatorIndex, uint8_t bits);
             uint8_t setReference(uint8_t regulatorIndex, double newReference);
             uint8_t setTempRange(uint8_t regulatorIndex, 

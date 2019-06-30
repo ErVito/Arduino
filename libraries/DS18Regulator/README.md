@@ -8,6 +8,7 @@ This library is a wrapper around the [PID library](https://github.com/br3ttb/Ard
 - [Examples](#examples)
 - [Versions](#versions)
 - [Credits](#credits)
+- [License](#license)
 
 ## Usage
 
@@ -38,6 +39,7 @@ temperatureController.getDutyCycle(0, &dutyCycle);
 Within the [Examples](https://github.com/ErVito/Arduino/tree/master/libraries/DS18Regulator/examples) folder you can find a sketch that implements the control structure described above.
 
 ## Versions
+1.0.1 - Added setPIDGains() function and license specification
 1.0.0 - First public release
 
 ## Credits
@@ -45,3 +47,6 @@ This library has been written by ErVito using the library cited:
 - [PID](https://github.com/br3ttb/Arduino-PID-Library/) by Brett Beauregard;
 - [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library) by Miles Burton and others;
 - [OneWire](https://github.com/PaulStoffregen/OneWire) by Paul Stoffregen and others.
+
+## License
+This project is licensed under the GNU GPL v3 or any later leversion.
