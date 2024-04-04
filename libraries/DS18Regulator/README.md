@@ -39,7 +39,7 @@ temperatureController.getDutyCycle(0, &dutyCycle);
 Within the [Examples](https://github.com/ErVito/Arduino/tree/master/libraries/DS18Regulator/examples) folder you can find a sketch that implements the control structure described above.
 
 ## Versions
-1.0.2 - Few little improvements
+1.0.2 - Few little improvements\
 1.0.1 - Added setPIDGains() function and license specification\
 1.0.0 - First public release
 
