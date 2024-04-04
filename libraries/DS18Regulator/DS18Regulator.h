@@ -6,11 +6,23 @@ the  Free Software  Foundation, either  version 3 of the License, or
 
 This  program  is  distributed  in the hope that  it  will be useful,
 but  WITHOUT ANY  WARRANTY; without  even  the  implied  warranty  of
-MERCHANTABILITY  or FITNESS  FOR  A  PARTICULAR  PURPOSE. See the GNU 
+MERCHANTABILITY  or FITNESS  FOR  A  PARTICULAR  PURPOSE. See the GNU
 General Public License for more details.
 
 You should  have received  a copy  of the  GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+ _______________________________________________________________________
+/                                                                       \
+| Author:       Marco Vitetta (also known as ErVito)                    |
+| E-mail:       ervito.development [at] (NO SPAM) gmail [dot] com       |
+| WebSite:      http://ervito.altervista.org                            |
+|_______________________________________________________________________|
+|                                                                       |
+| Versions:                                                             |
+|   1.0.2       Few little improvements                                 |
+|   1.0.1       Added setPIDGains() function and license specification  |
+|   1.0.0       First public release                                    |
+\_______________________________________________________________________/
 */
 
 #ifndef DS18_REGULATOR_H
@@ -20,6 +32,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <PID_v1.h>
 
 /* CONSTANTS DECLARATIONS */
+
+#define DS18_REGULATOR_MAJOR 1
+#define DS18_REGULATOR_MINOR 0
+#define DS18_REGULATOR_PATCH 2
 
 #define NUM_OF_REGULATORS 4
 #define OK                0

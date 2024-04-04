@@ -26,7 +26,7 @@ Once the object has been instantiated, a new regulator can be declared using the
 temperatureController.newRegulator(0, 1, 0.1, 0, 300000);
 ```
 
-Now can be called the _computePID()_ method which requires only the index (on the [OneWire](https://github.com/PaulStoffregen/OneWire) bus) of the sensor used and it determines the duty cycle of the [PWM](https://en.wikipedia.org/wiki/Pulse-width_modulation) signal to be performed (which can be retrived with the getter method _getDutyCycle()_).
+At this point it can be called the _computePID()_ method which requires only the index (on the [OneWire](https://github.com/PaulStoffregen/OneWire) bus) of the sensor used and it determines the duty cycle of the [PWM](https://en.wikipedia.org/wiki/Pulse-width_modulation) signal to be performed (which can be retrived with the getter method _getDutyCycle()_).
 ```
 temperatureController.computePID(0);
 
@@ -39,6 +39,7 @@ temperatureController.getDutyCycle(0, &dutyCycle);
 Within the [Examples](https://github.com/ErVito/Arduino/tree/master/libraries/DS18Regulator/examples) folder you can find a sketch that implements the control structure described above.
 
 ## Versions
+1.0.2 - Few little improvements
 1.0.1 - Added setPIDGains() function and license specification\
 1.0.0 - First public release
 

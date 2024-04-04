@@ -6,11 +6,23 @@ the  Free Software  Foundation, either  version 3 of the License, or
 
 This  program  is  distributed  in the hope that  it  will be useful,
 but  WITHOUT ANY  WARRANTY; without  even  the  implied  warranty  of
-MERCHANTABILITY  or FITNESS  FOR  A  PARTICULAR  PURPOSE. See the GNU 
+MERCHANTABILITY  or FITNESS  FOR  A  PARTICULAR  PURPOSE. See the GNU
 General Public License for more details.
 
 You should  have received  a copy  of the  GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+ _______________________________________________________________________
+/                                                                       \
+| Author:       Marco Vitetta (also known as ErVito)                    |
+| E-mail:       ervito.development [at] (NO SPAM) gmail [dot] com       |
+| WebSite:      http://ervito.altervista.org                            |
+|_______________________________________________________________________|
+|                                                                       |
+| Versions:                                                             |
+|   1.0.2       Few little improvements                                 |
+|   1.0.1       Added setPIDGains() function and license specification  |
+|   1.0.0       First public release                                    |
+\_______________________________________________________________________/
 */
 
 #include "DS18Regulator.h"
@@ -18,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 DS18Regulator::DS18Regulator(DallasTemperature *sensors) {
     this->sensors = sensors;
     
-    for(uint8_t sensorIndex = 0; sensorIndex < NUM_OF_REGULATORS; sensorIndex++)
+    for(uint8_t sensorIndex = 0; NUM_OF_REGULATORS > sensorIndex; sensorIndex++)
         regulators[sensorIndex] = NULL;
 }
 
@@ -28,7 +40,7 @@ uint8_t DS18Regulator::newRegulator(uint8_t  sensorIndex,
                                     double   Kd,
                                     uint32_t computationPeriod) {   /* Expressed in ms */
 
-    if (sensorIndex >= NUM_OF_REGULATORS || regulators[sensorIndex])
+    if (NUM_OF_REGULATORS <= sensorIndex  || regulators[sensorIndex])
         return ERR_INDEX_NOT_VALID;
 
     RegulatorStruct *regulator = (RegulatorStruct*)calloc(1, sizeof(RegulatorStruct));
@@ -66,13 +78,13 @@ uint8_t DS18Regulator::newRegulator(uint8_t  sensorIndex,
 }
 
 uint8_t DS18Regulator::computePID(uint8_t sensorIndex) {
-    if (sensorIndex >= NUM_OF_REGULATORS)
+    if (NUM_OF_REGULATORS <= sensorIndex)
         return ERR_INDEX_NOT_VALID;
 
     if (NULL == regulators[sensorIndex])
         return ERR_REGULATOR_DOESNT_EXIST;
 
-    sensors->requestTemperatures();
+    sensors->requestTemperaturesByIndex(sensorIndex);
     
     double temperature = sensors->getTempCByIndex(sensorIndex);
 
@@ -96,7 +108,7 @@ uint8_t DS18Regulator::setPIDGains(uint8_t regulatorIndex,
                                    double  Kp,
                                    double  Ki,
                                    double  Kd) {
-    if (regulatorIndex >= NUM_OF_REGULATORS)
+    if (NUM_OF_REGULATORS <= regulatorIndex)
         return ERR_INDEX_NOT_VALID;
 
     if (NULL == regulators[regulatorIndex])
@@ -108,13 +120,13 @@ uint8_t DS18Regulator::setPIDGains(uint8_t regulatorIndex,
 }
 
 uint8_t DS18Regulator::setPWMResolution(uint8_t regulatorIndex, uint8_t bits) {
-    if (regulatorIndex >= NUM_OF_REGULATORS)
+    if (NUM_OF_REGULATORS <= regulatorIndex)
         return ERR_INDEX_NOT_VALID;
 
     if (NULL == regulators[regulatorIndex])
         return ERR_REGULATOR_DOESNT_EXIST;
 
-    if (0 == bits || bits > 12)
+    if (0 == bits || 12 < bits)
         return ERR_RESOLUTION_NOT_VALID;
 
     switch(bits) {
@@ -135,7 +147,7 @@ uint8_t DS18Regulator::setPWMResolution(uint8_t regulatorIndex, uint8_t bits) {
 }
 
 uint8_t DS18Regulator::setReference(uint8_t regulatorIndex, double newReference) {
-    if (regulatorIndex >= NUM_OF_REGULATORS)
+    if (NUM_OF_REGULATORS <= regulatorIndex)
         return ERR_INDEX_NOT_VALID;
 
     if (NULL == regulators[regulatorIndex])
@@ -156,7 +168,7 @@ uint8_t DS18Regulator::setTempRange(uint8_t regulatorIndex,
                                     double  newMinTemperature,
                                     double  newMaxTemperature) {
 
-    if (regulatorIndex >= NUM_OF_REGULATORS)
+    if (NUM_OF_REGULATORS <= regulatorIndex)
         return ERR_INDEX_NOT_VALID;
 
     if (NULL == regulators[regulatorIndex])
@@ -196,7 +208,7 @@ uint8_t DS18Regulator::getDutyCycle(uint8_t regulatorIndex, double *dutyCycle) {
 }
 
 uint8_t DS18Regulator::getMinTemp(uint8_t regulatorIndex, double *minTemperature) {
-    if (regulatorIndex >= NUM_OF_REGULATORS)
+    if (NUM_OF_REGULATORS <= regulatorIndex)
         return ERR_INDEX_NOT_VALID;
 
     if (NULL == regulators[regulatorIndex])
@@ -208,7 +220,7 @@ uint8_t DS18Regulator::getMinTemp(uint8_t regulatorIndex, double *minTemperature
 }
 
 uint8_t DS18Regulator::getMaxTemp(uint8_t regulatorIndex, double *maxTemperature) {
-    if (regulatorIndex >= NUM_OF_REGULATORS)
+    if (NUM_OF_REGULATORS <= regulatorIndex)
         return ERR_INDEX_NOT_VALID;
 
     if (NULL == regulators[regulatorIndex])
@@ -220,7 +232,7 @@ uint8_t DS18Regulator::getMaxTemp(uint8_t regulatorIndex, double *maxTemperature
 }
 
 uint8_t DS18Regulator::getReference(uint8_t regulatorIndex, double *reference) {
-    if (regulatorIndex >= NUM_OF_REGULATORS)
+    if (NUM_OF_REGULATORS <= regulatorIndex)
         return ERR_INDEX_NOT_VALID;
 
     if (NULL == regulators[regulatorIndex])
@@ -232,7 +244,7 @@ uint8_t DS18Regulator::getReference(uint8_t regulatorIndex, double *reference) {
 }
 
 uint8_t DS18Regulator::getTemperature(uint8_t regulatorIndex, double *temperature) {
-    if (regulatorIndex >= NUM_OF_REGULATORS)
+    if (NUM_OF_REGULATORS <= regulatorIndex)
         return ERR_INDEX_NOT_VALID;
 
     if (NULL == regulators[regulatorIndex])

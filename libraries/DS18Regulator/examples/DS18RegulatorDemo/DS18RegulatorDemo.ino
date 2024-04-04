@@ -79,6 +79,9 @@ void setup() {
   }
   Serial.println("done.");
 
+  pinMode(HEATER, OUTPUT);
+  digitalWrite(HEATER, LOW);
+
   temperatureController.newRegulator(0, KP, KI, KD, COMPUTATION_PERIOD / 1000);       /* Period expressed in milliseconds */
   temperatureController.setTempRange(0, 23.0, 28.0);
   temperatureController.setReference(0, 25.0);
@@ -114,7 +117,7 @@ void loop() {
     tickOccured = false;
     ticks++;
 
-    if (ticks >= dutyCycle)
+    if (ticks == dutyCycle)
       digitalWrite(HEATER, LOW);
 
     /* The control law of the PID will be 
